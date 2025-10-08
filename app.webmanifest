@@ -5,7 +5,7 @@
     "description": "A task management application",
     "start_url": "/?from=pwa",
     "scope": "/",
-    "display": "fullscreen",
+    "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "blue"
 }
