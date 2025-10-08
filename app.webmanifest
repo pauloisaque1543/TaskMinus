@@ -7,5 +7,13 @@
     "scope": "/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "blue"
+    "theme_color": "blue",
+    "screenshots": [
+        {
+            "src": "images/screenshot1.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "label": "Main interface"
+        }
+    ]
 }
