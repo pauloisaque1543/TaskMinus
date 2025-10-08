@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="app.webmanifest">
-    <title>Telaa de login</title>
+    <meta name="theme-color" content="#1976d2">
+    <title>Tela de login</title>
 </head>
 <body>
     <button id="dark-mode" class="dark-mode-button">Emoji da lua</button>
@@ -12,4 +13,14 @@
     <h2>Cadastre-se.</h2>
     <a class="google-button" id="google-signin" href="pages/tarefas/tela-tarefas.html">Continuar com o Google</a>
 </body>
+<script>
+    // Registra um service worker mínimo para que o instalador do PWA seja ativado
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function(reg) { console.log('ServiceWorker registrado:', reg.scope); })
+                .catch(function(err) { console.warn('Falha ao registrar ServiceWorker:', err); });
+        });
+    }
+</script>
 </html>
