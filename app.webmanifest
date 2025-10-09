@@ -3,29 +3,21 @@
     "name": "TaskMinus",
     "short_name": "TaskMinus",
     "description": "A task management application",
-    "start_url": "./?from=pwa",
+    "start_url": "/?from=pwa",
     "scope": "/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#1976d2",
-    "icons": [
+    "theme_color": "black",
+    "icons" : [
         {
-            "src": "icons/icon-192.png",
+            "src" : "icons/icon-192X192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
-        {
-            "src": "icons/icon-512.png",
-            "sizes": "512x512",
+         {
+            "src" : "icons/icon-96X96.png",
+            "sizes": "96x96",
             "type": "image/png"
-        }
-    ],
-    "screenshots": [
-        {
-            "src": "images/screenshot1.png",
-            "sizes": "1280x720",
-            "type": "image/png",
-            "label": "Main interface"
         }
     ]
 }
