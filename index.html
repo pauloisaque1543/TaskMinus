@@ -1,125 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="app.webmanifest">
-    <meta name="theme-color" content="#1976d2">
-    <title>Tela de login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tela de login</title>
 </head>
 <body>
-    <button id="dark-mode" class="dark-mode-button">Emoji da lua</button>
-    <h1>Não tem umaa <strong>conta</strong> ainda?</h1>
-    <h2>Cadastre-se.</h2>
-    <a class="google-button" id="google-signin" href="pages/tarefas/tela-tarefas.html">Continuar com o Google</a>
-
-        <!-- PWA install banner -->
-        <div id="pwa-banner" style="display:none;position:fixed;left:16px;right:16px;bottom:24px;background:#ffffff;border:1px solid #ddd;padding:12px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.12);align-items:center;display:flex;gap:12px;z-index:9999;">
-                <div style="flex:1">
-                        <strong>Instalar TaskMinus</strong>
-                        <div style="font-size:0.9rem;color:#444">Adicione este aplicativo à tela inicial para acesso rápido.</div>
-                </div>
-                <div style="display:flex;gap:8px;align-items:center">
-                        <button id="pwa-install-btn" style="background:#1976d2;color:#fff;border:none;padding:8px 12px;border-radius:6px;cursor:pointer">Instalar</button>
-                        <button id="pwa-dismiss-btn" style="background:transparent;border:none;color:#666;cursor:pointer">Fechar</button>
-                </div>
-        </div>
-
-        <!-- iOS install hint (shown only on iOS) -->
-        <div id="ios-install-hint" style="display:none;position:fixed;left:16px;right:16px;bottom:24px;background:#fff3cd;border:1px solid #ffeeba;padding:12px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08);z-index:9999;">
-                <div style="display:flex;gap:12px;align-items:center;">
-                        <div style="flex:1;color:#66512c">Para instalar: toque em <strong>Compartilhar</strong> e depois em <strong>Adicionar à Tela de Início</strong>.</div>
-                        <button id="ios-dismiss" style="background:transparent;border:none;color:#66512c;cursor:pointer">Fechar</button>
-                </div>
-        </div>
+        <button id="dark-mode" class="dark-mode-button">Emoji da lua</button>
+        <h1>Não tem uma <strong>conta</strong> ainda?</h1>
+        <h2>Cadastre-se.</h2>
+        <a class="google-button" id="google-signin" href="pages/tarefas/tela-tarefas.html">Continuar com o Google</a>
 </body>
-</body>
-<script>
-    // Registra um service worker mínimo para que o instalador do PWA seja ativado
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/sw.js')
-                .then(function(reg) { console.log('ServiceWorker registrado:', reg.scope); })
-                .catch(function(err) { console.warn('Falha ao registrar ServiceWorker:', err); });
-        });
-    }
-
-    // PWA install prompt handling
-    let deferredPrompt = null;
-    const pwaBanner = document.getElementById('pwa-banner');
-    const installBtn = document.getElementById('pwa-install-btn');
-    const dismissBtn = document.getElementById('pwa-dismiss-btn');
-    const iosHint = document.getElementById('ios-install-hint');
-
-    // Detect iOS (Safari) to show manual add-to-home instructions
-    const isIos = () => /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
-    const isInStandaloneMode = () => ('standalone' in window.navigator) && window.navigator.standalone;
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-        // Prevent the mini-infobar from appearing on mobile
-        e.preventDefault();
-        deferredPrompt = e; // Stash the event so it can be triggered later.
-        // Show the install banner
-        pwaBanner.style.display = 'flex';
-    });
-
-    // If iOS and not already installed, show hint
-    if (isIos() && !isInStandaloneMode()) {
-        iosHint.style.display = 'block';
-    }
-
-    installBtn && installBtn.addEventListener('click', async () => {
-        if (!deferredPrompt) {
-            // No beforeinstallprompt event available; maybe already handled by browser
-            alert('O navegador não permitiu a instalação automática. Use o menu do navegador para adicionar à tela de início.');
-            return;
-        }
-        // Show the prompt
-        deferredPrompt.prompt();
-        const choiceResult = await deferredPrompt.userChoice;
-        if (choiceResult.outcome === 'accepted') {
-            console.log('Usuário aceitou a instalação');
-        } else {
-            console.log('Usuário rejeitou a instalação');
-        }
-        // Clear the saved prompt since it can only be used once.
-        deferredPrompt = null;
-        pwaBanner.style.display = 'none';
-    });
-
-    dismissBtn && dismissBtn.addEventListener('click', () => {
-        pwaBanner.style.display = 'none';
-    });
-
-    document.getElementById('ios-dismiss')?.addEventListener('click', () => {
-        iosHint.style.display = 'none';
-    });
-
-    // Optional: if you want to prompt automatically after a first user gesture,
-    // you can trigger `deferredPrompt.prompt()` on the first click/touch anywhere.
-    // Note: browsers require a user gesture to show the prompt, so this attempts
-    // to call prompt() immediately after the user's first interaction.
-    const autoPromptAfterInteraction = true;
-    let interactionBound = false;
-    function tryAutoPrompt() {
-        if (deferredPrompt && autoPromptAfterInteraction) {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then(choice => {
-                console.log('Auto prompt result:', choice.outcome);
-            }).catch(()=>{});
-            deferredPrompt = null;
-            pwaBanner.style.display = 'none';
-        }
-    }
-    function onFirstInteraction() {
-        tryAutoPrompt();
-        document.removeEventListener('click', onFirstInteraction);
-        document.removeEventListener('touchstart', onFirstInteraction);
-    }
-    if (!interactionBound) {
-        document.addEventListener('click', onFirstInteraction);
-        document.addEventListener('touchstart', onFirstInteraction);
-        interactionBound = true;
-    }
-</script>
 </html>
