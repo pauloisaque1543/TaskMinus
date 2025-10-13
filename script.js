@@ -1,3 +1,4 @@
-const $ = document.getElementById(this.id);
+const $ = (id) => document.getElementById(id);
+
 
 console.log($("dark-mode-button"));
