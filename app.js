@@ -1,6 +1,6 @@
-import TaskList from "./services/TaskList";
-import API from "./services/API";
-import { loadData } from "./services/Tasks";
+import TaskList from "./services/TaskList.js";
+import API from "./services/API.js";
+import { loadData } from "./services/Tasks.js";
 
 window.app = {} 
 app.tasklist = TaskList;
