@@ -47,17 +47,51 @@
                         <button id="Lupa-subtasks" class="search-button-subtasks">Lupa</button>
                 </div>
                 <div id="subtask-list" class="subtask-list">
-                        
+
                 </div>
                 <button id="add-subtask-button" class="add-subtask-button">Adicionar subtask</button>
         </section>
 
         <section id="tela-tarefas-page">
-                
+                <h2>Tarefas</h2> 
+                        <button class="search-button" id="search-button">Lupa</button>
+                        <button id="dark-mode" class="dark-mode-button">Emoji da lua</button>
+    
+                <div id="task-list" class="task-list"></div>
+                <nav class="bottom-nav" id="bottom-nav">
+                        <button id="add-project-button" class="add-project-button">+</button>
+                        <button id="add-task-button" class="add-task-button">+</button>
+                        <div id="tarefas-link">Tarefas</div>
+                        <div id="bot-link">Bot</div>
+                        <div id="configuracoes-link">Configurações</div>
+                </nav>
         </section>
 
         <section id="configuracoes-page">
-                
+                                <button id="back-button" class="back-button"><</button>
+                <h2>Configurações</h2>
+                <div>foto da pessoa</div>
+                <button>Alterar foto</button>
+                <div>
+                        <p>Nome da pessoa</p>
+                        <button>Alterar nome</button>
+                </div>
+                <div>
+                        <button>Notificações</button>
+                        <button>Backup</button>
+                        <button>Histórico de atividades</button>
+                        <button>Histórico de tarefas concluídas</button>
+                        <div>
+                                <p>Escolher tema</p>
+                                <button>Padrão</button>
+                        </div>
+                        <div>
+                                <p>Aumentar fonte</p>
+                                <button>-</button>
+                                <span>Aa</span>
+                                <button>+</button>
+                        </div>
+                </div>
         </section>
 
         <section id="historico-atividades-page">
@@ -69,11 +103,20 @@
         </section>
 
         <section id="tela-bot-page">
-                
+                <button id="back-button" class="back-button"><</button>
+                <h2>Bot</h2>
+                <button id="informations-button" class="information-button">i</button>
+                <div>Bot image</div>
+                <p>Olá! O que temos para hoje? 🤖</p>
+                <input type="text" id="user-input" placeholder="Digite sua mensagem aqui...">
+                <button id="send-button">></button>
+                <nav class="bottom-nav" id="bottom-nav">
+                        <button id="add-task-button" class="add-task-button">+</button>
+                        <div id="tarefas-link">Tarefas</div>
+                        <div id="bot-link">Bot</div>
+                        <div id="configuracoes-link">Configurações</div>
+                </nav>
         </section>
-        
-        
-        
 
         <nav class="bottom-nav" id="bottom-nav">
                 <button id="add-task-button" class="add-task-button">+</button>
@@ -81,6 +124,7 @@
                 <div id="bot-link">Bot</div>
                 <div id="configuracoes-link">Configurações</div>
         </nav>
+
         <script src="app.js" type="module" defer></script>
 </body>
 </html>
